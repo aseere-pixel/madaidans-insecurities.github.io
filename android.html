@@ -39,10 +39,10 @@
     privileges, verified boot would revert their changes upon reboot and ensure that they cannot persist.
   </p>
   <div class="question-box">
-	<p>
-	  In principle, I agree with this. However, I wonder why an Android is a much bigger risk than a hardened notebook? Not Windows crap,
-	  but a real operating system with a root account, SELinux, Secure Boot, ...?
-	</p>
+    <p>
+      In principle, I agree with this. However, I wonder why an Android is a much bigger risk than a hardened notebook? Not Windows crap,
+      but a real operating system with a root account, SELinux, Secure Boot, ...?
+    </p>
   </div>
 
 
@@ -55,15 +55,15 @@
     greater than any other part of the OS to the application layer is not a good idea.
   </p>
   <div class="question-box">
-	<p>
-	  Oh okay, that's funny. Sounds like it won't work on unrooted Androids. But the opposite is the case.
-	  All known vulnerabilities that I have found so far and have a CVE number are related to non-rooted devices and cause privilege escalation.<br/>
-	  Want to see examples? No prolem. Here even with the breakout from the extremely good Chrome Sandbox:
-	</p>
-	<ul>
-	  <li><a href="https://labs.bluefrostsecurity.de/blog/2020/03/31/cve-2020-0041-part-1-sandbox-escape/">https://labs.bluefrostsecurity.de/blog/2020/03/31/cve-2020-0041-part-1-sandbox-escape</a></li>
-	  <li><a href="https://labs.bluefrostsecurity.de/blog/2020/04/08/cve-2020-0041-part-2-escalating-to-root/">https://labs.bluefrostsecurity.de/blog/2020/04/08/cve-2020-0041-part-2-escalating-to-root/</a></li>
-	</ul>
+    <p>
+      Oh okay, that's funny. Sounds like it won't work on unrooted Androids. But the opposite is the case.
+      All known vulnerabilities that I have found so far and have a CVE number are related to non-rooted devices and cause privilege escalation.<br/>
+      Want to see examples? No prolem. Here even with the breakout from the extremely good Chrome Sandbox:
+    </p>
+    <ul>
+      <li><a href="https://labs.bluefrostsecurity.de/blog/2020/03/31/cve-2020-0041-part-1-sandbox-escape/">https://labs.bluefrostsecurity.de/blog/2020/03/31/cve-2020-0041-part-1-sandbox-escape</a></li>
+      <li><a href="https://labs.bluefrostsecurity.de/blog/2020/04/08/cve-2020-0041-part-2-escalating-to-root/">https://labs.bluefrostsecurity.de/blog/2020/04/08/cve-2020-0041-part-2-escalating-to-root/</a></li>
+    </ul>
   </div>
   <p>
     It does not matter if you have to whitelist apps that have root — an attacker can fake user input by for example,
@@ -71,11 +71,11 @@
     you have granted root to.
   </p>
   <div class="question-box">
-	<p>
-	  I think the author has outdated information. Yes, it is true that there was a clickjacking problem.
+    <p>
+      I think the author has outdated information. Yes, it is true that there was a clickjacking problem.
       However, this affected all applications and it did not matter if the device was rooted or not.<br/>
       Want to see examples? No problem: <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-27059">https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-27059</a><br/>
-	  <br/>
+      <br/>
       Magisk has additional protection and does not grant root privileges while obscured by another window or overlay.
       <a href="https://github.com/topjohnwu/Magisk/issues/3709">https://github.com/topjohnwu/Magisk/issues/3709</a>
       <br/>
@@ -156,6 +156,11 @@
     href="https://gitlab.com/calyxos/platform_frameworks_base/commit/dccce9d969f11c1739d19855ade9ccfbacf8ef76">CalyxOS'
     implementation</a> which allows only microG to spoof the Play Services signature and nothing else.
   </p>
+  <div class="question-box">
+    <p>
+      Solution: Do not use microG. I don't need it for any app. If you have an app that requires microG, change your habits and use other apps.
+    </p>
+  </div>
 
   <h2 id="firewalls"><a href="#firewalls">Firewalls</a></h2>
 
@@ -175,13 +180,26 @@
     for that permission, one example of which is the aforementioned download manager. You should also run the app in its
     own user or work profile to ensure that it cannot abuse third party apps either.
   </p>
-
+  <div class="question-box">
+    <p>
+      I tested it with Android 10 and 11 and found that it definitely does not work with the download manager. Maybe it was due to the tested app (from F-Droid) or it is basically only possible with older Android versions <= 9. If you can give a practical example, I would be very happy.<br/>
+      The problem is with INTERNET permission I can only say »yes« or »no«. I cannot specify that a certain app with UID 10332 is only allowed to communicate within a certain network with a certain IP address. I also cannot block large IP ranges, e.g. Google, Microsoft or whatever.
+    </p>
+  </div>
   <h2 id="conclusion"><a href="#conclusion">Conclusion</a></h2>
 
   <p>
     The best option for privacy and security on Android is to get a Pixel 3 or greater and flash <a href="https://grapheneos.org/">
-    GrapheneOS</a>. <br>
+    GrapheneOS</a>.
+  </p>
+  <div class="question-box">
+    <p>
+      Security: Depends on what you want and are looking for.<br>
     <br>
+	  Privacy: Rather not. If I want to control everything, I need to have full rights on the device. Everything else is nonsense, because I can't control everything with normal user rights.
+    </p>
+  </div>
+  <p>
     GrapheneOS does not contain any tracking unlike the stock OS on most devices. Additionally, GrapheneOS retains the baseline
     security model whilst improving upon it with substantial hardening enhancements — examples of which include a
     <a href="https://github.com/GrapheneOS/hardened_malloc">hardened memory allocator</a>,
@@ -200,6 +218,12 @@
     Remember that GrapheneOS cannot prevent you from ruining your privacy yourself. You still have to be
     careful regardless of the operating system.
   </p>
+  <div class="question-box">
+    <p>
+      It depends on what you want. Do you want to support a company like Google and buy a device from them that only has a 3-year warranty and then have to dispose of it because there are no updates? Sure, other manufacturers aren't any better, but remember: it's only 3 years.<br/><br/>
+      Yes, the Titan M chip is not bad, but don't forget: Even though this site portrays Pixel devices as super safe. It's not, because this chip also had a serious vulnerability, see <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=2019-9465">https://cve.mitre.org/cgi-bin/cvename.cgi?name=2019-9465</a>.<br/><br/> Basically, the problem comes from Android itself. It's a system that's absolute crap and no longer receives updates from all manufacturers after a few months or years. A new device is needed over and over again, even though technically it's still in good condition. So the environment is very happy about that, of course.
+	</p>
+  </div>
 
   <p class="p-final">
     <a href="index.html" class="back">Go back</a>
