@@ -156,8 +156,10 @@ code {
 }
 
 .question-box {
-    background-color: ##ffcece;
+    background-color: #ffcece !important;
     border: 1px solid red;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 @media screen and (max-width: 45em) {
