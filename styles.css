@@ -160,6 +160,7 @@ code {
     border: 1px solid red;
     border-radius: 5px;
     padding: 5px;
+    margin: 0;
 }
 
 @media screen and (max-width: 45em) {
