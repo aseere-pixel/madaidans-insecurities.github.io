@@ -12,6 +12,7 @@
   <h1>Android</h1>
 
   <p class="date"><i><time datetime="2021-03-20">Last edited: March 20, 2021</time></i></p>
+  <p class="date"><i><time datetime="2021-03-20">Last edited (Questions only): June 11, 2021</time></i></p>
 
   <p>
     By default, Android has a <a href="https://arxiv.org/abs/1904.05572">strong security model</a> and incorporates
@@ -37,23 +38,51 @@
     hook itself into the operating system. For example, if a remote attacker has managed to exploit the system and gain high
     privileges, verified boot would revert their changes upon reboot and ensure that they cannot persist.
   </p>
+  <p class="question-box">
+	In principle, I agree with this. However, I wonder why an Android is a much bigger risk than a hardened notebook? Not Windows crap,
+	but a real operating system with a root account, SELinux, Secure Boot, ...?
+  </p>
+
 
   <h2 id="rooting"><a href="#rooting">Rooting your device</a></h2>
 
   <p>
-    Rooting your device allows an attacker to easily gain extremely high privileges. Android's architecture is built
-    upon <a href="https://en.wikipedia.org/wiki/Principle_of_least_privilege">principle of least privilege</a>. By default,
+    Rooting your device allows an attacker to easily gain extremely high privileges. Android's architecture is built upon <a href="https://en.wikipedia.org/wiki/Principle_of_least_privilege">principle of least privilege</a>. By default,
     unrestricted root is found nowhere in the system due to the <a href="https://source.android.com/security/selinux">
     full system SELinux policy</a>. Even the init system does not have unrestricted root access. Exposing privileges far
-    greater than any other part of the OS to the application layer is not a good idea. <br>
-    <br>
+    greater than any other part of the OS to the application layer is not a good idea.
+  </p>
+  <p class="question-box">
+	Oh okay, that's funny. Sounds like it won't work on unrooted Androids. But the opposite is the case.
+	All known vulnerabilities that I have found so far and have a CVE number are related to non-rooted devices and cause privilege escalation.<br/>
+	Want to see examples? No prolem. Here even with the breakout from the extremely good Chrome Sandbox:<br/>
+	<ul>
+	  <li><a href="https://labs.bluefrostsecurity.de/blog/2020/03/31/cve-2020-0041-part-1-sandbox-escape/">https://labs.bluefrostsecurity.de/blog/2020/03/31/cve-2020-0041-part-1-sandbox-escape</a></li>
+	  <li><a href="https://labs.bluefrostsecurity.de/blog/2020/04/08/cve-2020-0041-part-2-escalating-to-root/">https://labs.bluefrostsecurity.de/blog/2020/04/08/cve-2020-0041-part-2-escalating-to-root/</a></li>
+	</ul>
+  </p>
+  <p>
     It does not matter if you have to whitelist apps that have root — an attacker can fake user input by for example,
     <a href="https://en.wikipedia.org/wiki/Clickjacking">clickjacking</a> or they can exploit vulnerabilities in apps that
-    you have granted root to. Rooting turns huge portions of the operating system into root attack surface; vulnerabilities
+    you have granted root to.
+  </p>
+  <p class="question-box">
+    I think the author has outdated information. Yes, it is true that there was a clickjacking problem.
+    However, this affected all applications and it did not matter if the device was rooted or not.<br/>
+    Want to see examples? No problem: <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-27059">https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-27059</a><br/>
+	<br/>
+    Magisk has additional protection and does not grant root privileges while obscured by another window or overlay.
+    see <a href="https://github.com/topjohnwu/Magisk/issues/3709">https://github.com/topjohnwu/Magisk/issues/3709</a>
+    <br/>
+    <br/>
+    I don't know of any case where that is still possible. If you still think it is possible, I would be happy to see an example application.
+  </p>
+  <p>
+    Rooting turns huge portions of the operating system into root attack surface; vulnerabilities
     in the UI layer — such as in the display server, among other things — can now be abused to gain complete root access. In
     addition, root fundamentally breaks verified boot and other security features by placing excessive trust in persistent
     state. By rooting your device, you are breaking Android's security model and adding further layers
-    of trust where it is inappropriate. <br>
+    of trust where it is inappropriate.<br>
     <br>
     A common argument for rooting is that Linux allows root but this does not account for the fact that the average
     desktop Linux system does not have a security model like Android does. On the usual Linux system, <a
